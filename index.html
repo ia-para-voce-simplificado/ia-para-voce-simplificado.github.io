@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do Íntimo ao Algoritmo - IA Para Você Simplificado</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" defer></script>
+  <script src="/_sdk/element_sdk.js" defer></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript" defer></script>
+
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    html, body { font-family: 'Outfit', sans-serif; background: #0a0a14; }
+
+    /* Correção do problema de renderização (Evita a piscada de layout quebrado) */
+    #app-root {
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+    }
+    #app-root.ready {
+      opacity: 1;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(34,197,94,0.4), 0 0 40px rgba(34,197,94,0.2); }
+      50% { box-shadow: 0 0 30px rgba(34,197,94,0.6), 0 0 60px rgba(34,197,94,0.3); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .fade-up { animation: fadeUp 0.7s ease-out both; }
+    .fade-up-1 { animation-delay: 0.1s; }
+    .fade-up-4 { animation-delay: 0.4s; }
+
+    .cta-btn {
+      animation: pulse-glow 2s ease-in-out infinite;
+      background: linear-gradient(135deg, #16a34a, #22c55e, #16a34a);
+      background-size: 200% 200%;
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover { transform: scale(1.03); filter: brightness(1.1); }
+    .cta-btn:active { transform: scale(0.98); }
+
+    .book-float { animation: float 4s ease-in-out infinite; }
+
+    .shimmer-text {
+      background: linear-gradient(90deg, #f9fafb 0%, #fbbf24 25%, #f9fafb 50%, #fbbf24 75%, #f9fafb 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .benefit-card { transition: all 0.3s ease; }
+    .benefit-card:hover {
+      border-color: rgba(251,191,36,0.3);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(251,191,36,0.3), transparent);
+    }
+
+    .guarantee-badge {
+      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(34,197,94,0.05));
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+
+    .price-tag {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 2px solid rgba(251,191,36,0.4);
+    }
+
+    .scroll-indicator { animation: fadeUp 1s ease-out 1.5s both; }
+
+    @keyframes bounce-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
+    body { box-sizing: border-box; }
+  </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1972148837025431');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1972148837025431&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+ </head>
+ <body class="h-full">
+  <div id="app-root" class="h-full w-full overflow-auto" style="background: #0a0a14; color: #f1f1f1;">
+   <div style="position:fixed;inset:0;background-image:radial-gradient(rgba(251,191,36,0.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+   
+   <div class="relative z-10 max-w-lg mx-auto px-4 pb-10">
+    <header class="flex items-center justify-between py-4 fade-up">
+     <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);"><i data-lucide="brain" style="width:18px;height:18px;color:#0a0a14;"></i></div>
+      <span class="text-sm font-semibold tracking-wide opacity-70">IA Simplificada</span>
+     </div>
+     <div class="flex items-center gap-1 text-xs opacity-50"><i data-lucide="lock" style="width:12px;height:12px;"></i> <span>Compra Segura</span></div>
+    </header>
+
+    <section class="pt-4 pb-8">
+     <div class="fade-up fade-up-1"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium mb-4" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.2);"> <i data-lucide="zap" style="width:12px;height:12px;"></i> +2.000 leitores transformados </span></div>
+     <h1 id="el-headline" class="text-3xl font-black leading-tight">A Inteligência Artificial não vai <span class="text-amber-400 italic">te substituir</span>. Mas quem sabe usá-la, <span class="text-amber-400">sim.</span></h1>
+     <p id="el-subheadline" class="mt-4 text-base leading-relaxed opacity-90">Descubra como decifrar a engrenagem invisível que está moldando o novo mercado, <span class="font-bold text-white">sem precisar escrever uma única linha de código.</span></p>
+
+     <div class="flex justify-center mt-8 fade-up fade-up-4">
+      <div class="book-float relative">
+        <div class="w-52 h-72 rounded-2xl flex flex-col items-center justify-center p-5 text-center relative overflow-hidden" style="background:linear-gradient(145deg,#1a1a2e,#0f0f1e);border:2px solid rgba(251,191,36,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(251,191,36,0.1);">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#fbbf24,#f59e0b,#fbbf24);"></div>
+          <img src="capa.webp" alt="Capa do Livro IA Para Você Simplificado" width="208" height="288" fetchpriority="high" loading="eager" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+        </div>
+      </div>
+     </div>
+     <div class="flex justify-center mt-6 scroll-indicator bounce-soft opacity-40"><i data-lucide="chevron-down" style="width:20px;height:20px;"></i></div>
+    </section>
+
+    <div class="section-divider my-2"></div>
+
+    <section class="py-8">
+     <div class="flex items-center gap-2 mb-4 fade-up">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(239,68,68,0.15);"><i data-lucide="alert-triangle" style="width:14px;height:14px;color:#ef4444;"></i></div>
+      <span class="text-xs font-bold uppercase tracking-widest" style="color:#ef4444;">O problema</span>
+     </div>
+     <h2 class="text-xl font-bold leading-snug mb-4 fade-up" style="color:#f9fafb;">Você já sentiu que o world está mudando <span style="color:#ef4444;">rápido demais?</span></h2>
+     <div class="glass-card rounded-xl p-5 fade-up">
+      <p class="text-sm leading-relaxed opacity-80 mb-4">Termos como <strong style="color:#f9fafb;">Machine Learning, Deep Learning e Algoritmos</strong> parecem uma língua estrangeira falada apenas por gênios do Vale do Silício?</p>
+      <div class="flex items-start gap-3 p-3 rounded-lg" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);"><i data-lucide="quote" style="width:16px;height:16px;color:#ef4444;flex-shrink:0;margin-top:2px;"></i>
+       <p class="text-sm leading-relaxed" style="color:#fca5a5;"><strong>A verdade é uma só:</strong> O medo nasce da falta de compreensão. Enquanto você enxerga a IA como uma "caixa preta", outros estão usando esse conhecimento para <strong>reduzir custos, gain tempo e criar novas fontes de receita.</strong></p>
+      </div>
+     </div>
+    </section>
+
+    <div class="section-divider my-2"></div>
+
+    <section class="py-8">
+     <div class="flex items-center gap-2 mb-4 fade-up">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(251,191,36,0.15);"><i data-lucide="sparkles" style="width:14px;height:14px;color:#fbbf24;"></i></div>
+      <span class="text-xs font-bold uppercase tracking-widest" style="color:#fbbf24;">A solução</span>
+     </div>
+     <h2 class="text-xl font-bold leading-snug mb-2 fade-up" style="color:#f9fafb;">"Do Íntimo ao Algoritmo"</h2>
+     <p class="text-sm opacity-60 mb-6 fade-up">por Kauê Araujo — IA Para Você Simplificado</p>
+     <p class="text-sm leading-relaxed opacity-80 mb-6 fade-up">Este não é um manual técnico chato. É um <strong style="color:#fbbf24;">mapa visual</strong> para quem deseja sair da inércia. Pegamos a matemática complexa e a transformamos em <strong style="color:#f9fafb;">analogias do dia a dia.</strong></p>
+     <div class="text-xs font-bold uppercase tracking-widest mb-4 opacity-40">O que você vai dominar</div>
+     
+     <div class="space-y-3">
+      <div class="benefit-card glass-card rounded-xl p-4 fade-up">
+       <div class="flex items-start gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(168,85,247,0.1));"><i data-lucide="heart" style="width:18px;height:18px;color:#a855f7;"></i></div>
+        <div>
+         <div class="font-bold text-sm mb-1" style="color:#a855f7;">A Ponte Humana</div>
+         <p class="text-xs leading-relaxed opacity-70">Por que a IA é o reflexo da nossa inteligência e onde ela <strong>nunca poderá nos superar</strong> — o factor Fé e Intuição.</p>
+        </div>
+       </div>
+      </div>
+
+      <div class="benefit-card glass-card rounded-xl p-4 fade-up">
+       <div class="flex items-start gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(59,130,246,0.1));"><i data-lucide="dog" style="width:18px;height:18px;color:#3b82f6;"></i></div>
+        <div>
+         <div class="font-bold text-sm mb-1" style="color:#3b82f6;">O Método do Cão</div>
+         <p class="text-xs leading-relaxed opacity-70">Entenda Machine Learning através de uma analogia tão simples que <strong>até uma criança compreenderia.</strong></p>
+        </div>
+       </div>
+      </div>
+
+      <div class="benefit-card glass-card rounded-xl p-4 fade-up">
+       <div class="flex items-start gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(34,197,94,0.1));"><i data-lucide="eye" style="width:18px;height:18px;color:#22c55e;"></i></div>
+        <div>
+         <div class="font-bold text-sm mb-1" style="color:#22c55e;">Visão de Águia</div>
+         <p class="text-xs leading-relaxed opacity-70">Aprenda a diferença entre <strong>Regressão</strong> (prever preços) e <strong>Classificação</strong> (identificar fraudes e padrões).</p>
+        </div>
+       </div>
+      </div>
+
+      <div class="benefit-card glass-card rounded-xl p-4 fade-up">
+       <div class="flex items-start gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(251,191,36,0.1));"><i data-lucide="database" style="width:18px;height:18px;color:#fbbf24;"></i></div>
+        <div>
+         <div class="font-bold text-sm mb-1" style="color:#fbbf24;">Dados Gourmet vs. Junk Food</div>
+         <p class="text-xs leading-relaxed opacity-70">O segredo de uma IA poderosa <strong>não está na tecnologia</strong>, mas na qualidade da informação que você fornece.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    <div class="section-divider my-2"></div>
+
+    <section class="py-8">
+     <div class="flex items-center gap-2 mb-4 fade-up">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(251,191,36,0.15);"><i data-lucide="trophy" style="width:14px;height:14px;color:#fbbf24;"></i></div>
+      <span class="text-xs font-bold uppercase tracking-widest" style="color:#fbbf24;">Por que este livro?</span>
+     </div>
+     <div class="grid grid-cols-3 gap-3 fade-up">
+      <div class="glass-card rounded-xl p-4 text-center">
+       <i data-lucide="message-circle" style="width:22px;height:22px;color:#fbbf24;margin:0 auto 8px;display:block;"></i>
+       <div class="text-xs font-bold mb-1" style="color:#f9fafb;">Linguagem Acessível</div>
+       <div class="text-[10px] opacity-50 leading-tight">Zero tecnicismos desnecessários</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+       <i data-lucide="trending-up" style="width:22px;height:22px;color:#22c55e;margin:0 auto 8px;display:block;"></i>
+       <div class="text-xs font-bold mb-1" style="color:#f9fafb;">Foco em Resultados</div>
+       <div class="text-[10px] opacity-50 leading-tight">Redução de custos em até 50%</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+       <i data-lucide="layout" style="width:22px;height:22px;color:#a855f7;margin:0 auto 8px;display:block;"></i>
+       <div class="text-xs font-bold mb-1" style="color:#f9fafb;">Guia Visual</div>
+       <div class="text-[10px] opacity-50 leading-tight">Exemplos práticos e memoráveis</div>
+      </div>
+     </div>
+    </section>
+
+    <div class="section-divider my-2"></div>
+
+    <section class="py-8">
+     <div class="flex items-center gap-2 mb-4 fade-up">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(34,197,94,0.15);"><i data-lucide="tag" style="width:14px;height:14px;color:#22c55e;"></i></div>
+      <span class="text-xs font-bold uppercase tracking-widest" style="color:#22c55e;">Oferta especial</span>
+     </div>
+     <h2 class="text-xl font-bold leading-snug mb-2 fade-up" style="color:#f9fafb;">Seu próximo nível custa <span style="color:#fbbf24;">menos do que uma pizza.</span></h2>
+     <p class="text-sm opacity-60 mb-6 fade-up">O conhecimento mais poderoso do século XXI está a um clique de distância.</p>
+     
+     <div class="price-tag rounded-2xl p-6 text-center fade-up mb-6">
+      <div class="text-xs font-bold uppercase tracking-widest opacity-40 mb-2">Preço único</div>
+      <div id="el-price" class="text-5xl font-black" style="color:#fbbf24;">R$ 49,90</div>
+      <div class="mt-2 text-sm opacity-60">ou <strong id="el-installment" style="color:#f9fafb;">7x de R$ 8,16</strong> no cartão</div>
+      <div class="mt-3 flex items-center justify-center gap-1.5 text-xs opacity-40"><i data-lucide="info" style="width:12px;height:12px;"></i> <span>Menos de R$ 0,30/dia</span></div>
+     </div>
+
+     <a id="el-cta" href="https://hotm.io/checkoutlivrocurso" target="_blank" rel="noopener noreferrer" class="cta-btn block w-full text-center py-5 px-6 rounded-2xl text-white font-extrabold text-base tracking-wide no-underline fade-up" style="text-decoration:none;"> 
+       <span class="flex items-center justify-center gap-2"> <i data-lucide="rocket" style="width:20px;height:20px;"></i> <span id="el-cta-text">QUERO SIMPLIFICAR A IA E GARANTIR MEU FUTURO</span> </span> 
+     </a>
+     
+     <div class="flex items-center justify-center gap-4 mt-4 text-[10px] opacity-40">
+       <span class="flex items-center gap-1"><i data-lucide="shield" style="width:10px;height:10px;"></i> Pagamento Seguro</span> 
+       <span class="flex items-center gap-1"><i data-lucide="credit-card" style="width:10px;height:10px;"></i> Cartão ou PIX</span> 
+       <span class="flex items-center gap-1"><i data-lucide="download" style="width:10px;height:10px;"></i> Acesso Imediato</span>
+     </div>
+    </section>
+
+    <div class="section-divider my-2"></div>
+
+    <section class="py-8">
+     <div class="guarantee-badge rounded-2xl p-6 text-center fade-up">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(34,197,94,0.15);"><i data-lucide="shield-check" style="width:28px;height:28px;color:#22c55e;"></i></div>
+      <div class="text-lg font-bold mb-1" style="color:#22c55e;">Garantia Blindada de 7 Dias</div>
+      <p class="text-sm leading-relaxed opacity-70 max-w-xs mx-auto">Se em uma semana você sentir que não aprendeu nada novo, <strong style="color:#f9fafb;">eu devolvo cada centavo.</strong> O risco é todo meu, o conhecimento é todo seu.</p>
+     </div>
+    </section>
+
+    <section class="pb-8">
+     <a href="https://hotm.io/checkoutlivrocurso" target="_blank" rel="noopener noreferrer" class="cta-btn block w-full text-center py-5 px-6 rounded-2xl text-white font-extrabold text-base tracking-wide no-underline" style="text-decoration:none;"> 
+       <span class="flex items-center justify-center gap-2"> <i data-lucide="zap" style="width:20px;height:20px;"></i> <span>GARANTIR MEU EXEMPLAR AGORA</span> </span> 
+     </a>
+    </section>
+
+    <footer class="pb-8 text-center">
+     <div class="section-divider mb-6"></div>
+     <p class="text-[10px] opacity-30">© 2026 Kauê Araujo — Todos os direitos reservados.</p>
+     <p class="text-[10px] opacity-30">ISBN 978-65-02-12132-0</p>
+     <p class="text-[10px] opacity-20 mt-1">Este produto é comercializado com apoio da Hotmart.</p>
+    </footer>
+   </div>
+  </div>
+
+  <script>
+   const defaultConfig = {
+     background_color: '#0a0a14',
+     surface_color: '#161628',
+     text_color: '#f1f1f1',
+     primary_action_color: '#22c55e',
+     accent_color: '#fbbf24',
+     font_family: 'Outfit',
+     font_size: 16,
+     headline: 'A Inteligência Artificial não vai te substituir. Mas quem sabe usá-la, sim.',
+     price: 'R$ 49,90',
+     installment: '7x de R$ 8,16',
+     cta_text: 'QUERO SIMPLIFICAR A IA E GARANTIR MEU FUTURO'
+   };
+
+   function applyConfig(config) {
+     const root = document.getElementById('app-root');
+     if (!root) return;
+     
+     const cf = (k) => config[k] || defaultConfig[k];
+     const font = cf('font_family');
+     const baseSize = cf('font_size');
+     const baseFontStack = `${font}, 'Outfit', sans-serif`;
+
+     root.style.background = cf('background_color');
+     root.style.color = cf('text_color');
+     root.style.fontFamily = baseFontStack;
+
+     const priceEl = document.getElementById('el-price');
+     if (priceEl) priceEl.textContent = cf('price');
+
+     const installEl = document.getElementById('el-installment');
+     if (installEl) installEl.textContent = cf('installment');
+
+     const ctaTextEl = document.getElementById('el-cta-text');
+     if (ctaTextEl) ctaTextEl.textContent = cf('cta_text');
+
+     document.querySelectorAll('h1').forEach(el => el.style.fontSize = `${baseSize * 1.9}px`);
+     document.querySelectorAll('h2').forEach(el => el.style.fontSize = `${baseSize * 1.3}px`);
+     
+     document.querySelectorAll('.cta-btn').forEach(btn => {
+       btn.style.background = `linear-gradient(135deg, ${cf('primary_action_color')}, ${cf('primary_action_color')}dd, ${cf('primary_action_color')})`;
+     });
+   }
+
+   // Executa assim que o HTML estiver pronto e os scripts externos finalizados
+   document.addEventListener('DOMContentLoaded', () => {
+     if (typeof lucide !== 'undefined') lucide.createIcons();
+     
+     if (window.elementSdk && typeof window.elementSdk.init === 'function') {
+       window.elementSdk.init({
+         defaultConfig,
+         onConfigChange: async (config) => { applyConfig(config); },
+         mapToCapabilities: (config) => {
+           const c = (key) => ({
+             get: () => config[key] || defaultConfig[key],
+             set: (v) => { config[key] = v; if(window.elementSdk.setConfig) window.elementSdk.setConfig({ [key]: v }); }
+           });
+           return {
+             recolorables: [c('background_color'), c('surface_color'), c('text_color'), c('primary_action_color'), c('accent_color')],
+             borderables: [],
+             fontEditable: c('font_family'),
+             fontSizeable: c('font_size')
+           };
+         }
+       });
+     }
+     
+     applyConfig(defaultConfig);
+
+     // Dispara a visualização suave e segura apenas depois de injetar os estilos
+     const root = document.getElementById('app-root');
+     if (root) {
+       root.classList.add('ready');
+     }
+   });
+  </script>
+ </body>
+</html>
